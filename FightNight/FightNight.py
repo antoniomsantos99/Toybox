@@ -47,6 +47,12 @@ def fight(odd1):
 
 #for name in names_first:
 while True:
+
+    if(money == 0):
+        print("You are broke! The End.")
+        time.sleep(5)
+        break
+
     str1 = random.randint(0,100)
     def1 = random.randint(0,100)
     int1 = random.randint(0,100)
@@ -78,6 +84,8 @@ while True:
     print("    Power: %i                     Power: %i   ") % (power1 ,power2)
     print("    Odd: %i (%fX)                       Odd: %i (%fX)  ") % (odd1,mult1 ,odd2, mult2)
     print("\n Money: %i") % (money)
+
+
     #betAction(money)
     fighterPointer = raw_input("Who do you wanna bet?")
 
@@ -102,7 +110,7 @@ while True:
         print("%s wins") % (fname2)
         winner = 2
 
-    if int(fighterPointer) == int(fighterPointer):
+    if int(fighterPointer) == int(winner):
         print("You win")
         if(winner == 1):
             money += (int(betBank) * mult1)
