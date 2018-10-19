@@ -1,5 +1,4 @@
-#Use the for loop to determine how many times the digit is in the number
-
+#Function that counts and prints the number of times a digit occurs in a number.
 def Analyze(number,digit,total):
  count = 0
  for d in number:
