@@ -86,51 +86,88 @@ def movement(box,x,y,orientation):
     if(orientation=='NE' or orientation=='SW'):
         if(orientation=='NE' and box[y-1][x+1]!='#'):
             box[y][x]=' '
+            box[y][x+1]=' '
             box[y-1][x+1]='O'
             x+=1
             y-=1
-        elif(orientation=='NE'):
-            orientation = 'SW'
+        elif(orientation=='NE' and box[y][x+1]=='#'):
+            orientation = 'NW'
             box[y][x]=' '
-            box[y+1][x-1]='O'
+            box[y][x+1]=' '
+            box[y-1][x+1]='O'
             x-=1
+            y-=1
+        elif(orientation=='NE'):
+            orientation = 'SE'
+            box[y][x]=' '
+            box[y][x+1]=' '
+            box[y+1][x+1]='O'
+            x+=1
             y+=1
+
         elif(orientation=='SW' and box[y+1][x-1]!='#'):
             box[y][x]=' '
+            box[y][x+1]=' '
             box[y+1][x-1]='O'
             x-=1
             y+=1
-        elif(orientation=='SW'):
-            orientation = 'NE'
+        elif(orientation=='SW' and box[y][x-1]=='#'):
+            orientation = 'SE'
             box[y][x]=' '
-            box[y-1][x+1]='O'
+            box[y][x+1]=' '
+            box[y+1][x+1]='O'
             x+=1
+            y+=1
+        else:
+            orientation = 'NW'
+            box[y][x]=' '
+            box[y][x+1]=' '
+            box[y-1][x+1]='O'
+            x-=1
             y-=1
 
     #NW/SE
     if(orientation=='NW' or orientation=='SE'):
         if(orientation=='NW' and box[y-1][x-1]!='#'):
             box[y][x]=' '
+            box[y][x+1]=' '
             box[y-1][x-1]='O'
             x-=1
             y-=1
-        elif(orientation=='NW'):
-            orientation = 'SE'
+        elif(orientation=='NW' and box[y][x-1]=='#'):
+            orientation = 'NE'
             box[y][x]=' '
-            box[y+1][x+1]='O'
+            box[y][x+1]=' '
+            box[y-1][x+1]='O'
             x+=1
+            y-=1
+        elif(orientation=='NW'):
+            orientation = 'SW'
+            box[y][x]=' '
+            box[y][x+1]=' '
+            box[y+1][x-1]='O'
+            x-=1
             y+=1
         elif(orientation=='SE' and box[y+1][x+1]!='#'):
             box[y][x]=' '
+            box[y][x+1]=' '
             box[y+1][x+1]='O'
             x+=1
             y+=1
-        elif(orientation=='SE'):
-            orientation = 'NW'
+        elif(orientation=='SE' and box[y+1][x]=='#'):
+            orientation = 'NE'
             box[y][x]=' '
+            box[y][x+1]=' '
             box[y-1][x+1]='O'
-            x-=1
+            x+=1
             y-=1
+        else:
+            orientation = 'SE'
+            box[y][x]=' '
+            box[y][x+1]=' '
+            box[y+1][x+1]='O'
+            x+=1
+            y+=1
     return [x,y,orientation]
 
 def crudePhysics():
