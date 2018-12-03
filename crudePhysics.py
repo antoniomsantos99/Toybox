@@ -1,10 +1,12 @@
 import math
 import time
 import os
+import random
 
 def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+#This function builds the initial box  using the size given
 def boxMaker(w,h):
     l=[]
     line=[]
@@ -24,21 +26,22 @@ def boxMaker(w,h):
     box[math.ceil(h/2)][math.ceil(w/2)]='O'
     return box
 
+#This parses the input to give the correct sizes
 def parseInfo(string):
     string=string.split('x')
     return(string)
 
+#Prints the box on the console
 def printbox(box):
     for x in box:
         for i in x:
             print(i,end='')
         print('')
 
-def initbox(box,w,h):
-    box[math.ceil(h/2)][math.ceil(w/2)]='O'
-    return [math.ceil(h/2),math.ceil(w/2)]
 
 
+
+#I hate this functon very much and i don't want to look at it again!
 def movement(box,x,y,orientation):
     if(orientation=='N' and box[y-1][x]!='#'):
         box[y][x]=' '
@@ -88,6 +91,12 @@ def movement(box,x,y,orientation):
         box[y-1][x+1]='O'
         x+=1
         y-=1
+    elif(orientation=='NE' and box[y][x+1]=='#' and box[y-1][x]=='#'):
+        orientation = 'SW'
+        box[y][x]=' '
+        box[y+1][x-1]='O'
+        x-=1
+        y+=1
     elif(orientation=='NE' and box[y][x+1]=='#'):
         orientation = 'NW'
         box[y][x]=' '
@@ -108,6 +117,12 @@ def movement(box,x,y,orientation):
         box[y+1][x-1]='O'
         x-=1
         y+=1
+    elif(orientation=='SW' and box[y][x-1]=='#' and box[y+1][x]=='#'):
+        orientation = 'NE'
+        box[y][x]=' '
+        box[y-1][x+1]='O'
+        x+=1
+        y-=1
     elif(orientation=='SW' and box[y][x-1]=='#'):
         orientation = 'SE'
         box[y][x]=' '
@@ -118,7 +133,6 @@ def movement(box,x,y,orientation):
     elif orientation=='SW' and box[y+1][x]=='#':
         orientation = 'NW'
         box[y][x]=' '
-        box[y][x+1]=' '
         box[y-1][x-1]='O'
         x-=1
         y-=1
@@ -130,6 +144,12 @@ def movement(box,x,y,orientation):
         box[y-1][x-1]='O'
         x-=1
         y-=1
+    elif(orientation=='NW' and box[y][x-1]=='#' and box[y-1][x]=='#'):
+        orientation = 'SE'
+        box[y][x]=' '
+        box[y+1][x+1]='O'
+        x+=1
+        y+=1
     elif(orientation=='NW' and box[y][x-1]=='#'):
         orientation = 'NE'
         box[y][x]=' '
@@ -149,6 +169,12 @@ def movement(box,x,y,orientation):
         box[y+1][x+1]='O'
         x+=1
         y+=1
+    elif(orientation=='SE' and box[y+1][x]=='#' and box[y][x+1]=='#'):
+        orientation = 'NW'
+        box[y][x]=' '
+        box[y-1][x-1]='O'
+        x-=1
+        y-=1
     elif(orientation=='SE' and box[y+1][x]=='#'):
         orientation = 'NE'
         box[y][x]=' '
@@ -164,7 +190,8 @@ def movement(box,x,y,orientation):
     return [x,y,orientation]
 
 def crudePhysics():
-    string = parseInfo(input('What is the box size? ex:(15x20)'))
+    string = parseInfo(input('What is the box size? ex:(15x20) -'))
+    fps= 30
     posX = math.ceil(int(string[0])/2)
     posY =  math.ceil(int(string[1])/2)
     box= boxMaker(int(string[0]),int(string[1]))
@@ -179,7 +206,7 @@ def crudePhysics():
         orientation= info[2]
         clearScreen()
         printbox(box)
-        time.sleep(0.05)
+        time.sleep(1/fps)
 
 
 crudePhysics()
