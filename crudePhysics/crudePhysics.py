@@ -43,6 +43,15 @@ def printbox(box):
 
 #I hate this functon very much and i don't want to look at it again!
 def movement(box,x,y,orientation):
+    if(box[y-1][x]=='#' and box[y][x+1]=='#' and box[y][x-1]=='#'):
+        orientation='S'
+    elif(box[y+1][x]=='#' and box[y][x+1]=='#' and box[y][x-1]=='#'):
+        orientation='N'
+    elif(box[y-1][x]=='#' and box[y+1][x]=='#' and box[y][x-1]=='#'):
+        orientation='E'
+    elif(box[y-1][x]=='#' and box[y+1][x]=='#' and box[y][x+1]=='#'):
+        orientation='W'
+
     if(orientation=='N' and box[y-1][x]!='#'):
         box[y][x]=' '
         box[y-1][x]='O'
@@ -175,7 +184,7 @@ def movement(box,x,y,orientation):
         box[y-1][x-1]='O'
         x-=1
         y-=1
-    elif(orientation=='SE' and box[y+1][x]=='#'):
+    elif(orientation=='SE' and ((box[y+1][x+1]=='#') and (box[y][x+1]!='#'))):
         orientation = 'NE'
         box[y][x]=' '
         box[y-1][x+1]='O'
@@ -195,7 +204,7 @@ def crudePhysics():
     posX = math.ceil(int(string[0])/2)
     posY =  math.ceil(int(string[1])/2)
     box= boxMaker(int(string[0]),int(string[1]))
-    orientation='SE'
+    orientation='NW'
     printbox(box)
 
     while True:
