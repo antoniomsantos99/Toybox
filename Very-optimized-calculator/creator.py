@@ -6,7 +6,8 @@ try:
 except:
     print('Invalid Value')
     SystemExit()
-f.write("from creator import parser \n \nlist=parser() \n \na=int(list[0])\nb=int(list[2])\nsignal =list[1]\n\n")
+
+f.write("a=int(input('What is the first number?'))\nb=int(input('What is the second number?'))\nsignal=input('What is the signal?(+,-,x,:)')\n")
 
 
 for signal in signals:
@@ -26,21 +27,4 @@ for signal in signals:
             second = second+'\n'
             f.write(first)
             f.write(second)
-
-def parser():
-    eq= input("What's your equation?")
-
-    if '+' in eq:
-      eq=eq.split('+')
-      eq.insert(1,'+')
-    if '-' in eq:
-      eq=eq.split('-')
-      eq.insert(1,'-')
-    if 'x' in eq:
-      eq=eq.split('x')
-      eq.insert(1,'x')
-    if ':' in eq:
-      eq=eq.split(':')
-      eq.insert(1,':')
-
-    return eq
+f.write('idontknowhowtopresstocontinue=input("")')
