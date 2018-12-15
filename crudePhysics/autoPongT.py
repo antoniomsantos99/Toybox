@@ -224,7 +224,7 @@ def movement(box,x,y,orientation):
     return [x,y,orientation]
 
 def crudePhysics():
-    string = parseInfo('70x20')
+    string = parseInfo(input("What is the box size? recommended:(70x20) -"))
     fps= 30
     posX = math.ceil(int(string[0])/2)
     posY =  math.ceil(int(string[1])/2)
@@ -232,14 +232,14 @@ def crudePhysics():
     orientation='NW'
     ps = 0
     player1 = {
-    "top":9,
-    "bottom":14,
-    "px": 2
+    "top":posY-2,
+    "bottom":posY+2,
+    "px": 3
     }
     player2 = {
-    "top":9,
-    "bottom":14,
-    "px":67
+    "top":posY-2,
+    "bottom":posY+2,
+    "px": int(string[0])-4
         }
 
     player = [player1,player2]
@@ -247,7 +247,7 @@ def crudePhysics():
     printbox(box)
     while True:
         info=movement(box,posX,posY,orientation)
-        if posX > 66 or posX<4:
+        if posX > int(string[0])-4 or posX<5:
             if ps==0:
                 ps=1
             else:
