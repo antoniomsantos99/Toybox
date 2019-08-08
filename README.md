@@ -19,4 +19,6 @@ Simple stuff i do for fun!
 
 * CrudePhysics - Very simple physics simulator on the terminal.
 
+* IGExtract - Extract the downloadable image from an instagram post. (Still in development!)
+
 ]
